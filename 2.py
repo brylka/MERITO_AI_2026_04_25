@@ -10,14 +10,23 @@ app = Flask(__name__)
 client = genai.Client()
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def chat():
+    return render_template('chat.html')
+
+
+
+
+
+
+@app.route('/old', methods=['GET', 'POST'])
 def hello():
     answer = None
     history = []
     if request.method == 'POST':
-        p = request.form['prompt']
+        prompt = request.form['prompt']
         history = json.loads(request.form['history'])
-        history.append({"role": "user", "parts": [{"text": p}]})
+        history.append({"role": "user", "parts": [{"text": prompt}]})
 
         response = client.models.generate_content(
             model="gemini-3-flash-preview", contents=history
