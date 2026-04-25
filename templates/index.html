@@ -7,11 +7,18 @@
 <body>
     <h1>Moja pierwsza aplikacja webowa</h1>
     <form method="post">
+        <input type="hidden" name="history" value="{{ history_json }}">
         <input type="text" name="prompt" required>
         <button type="submit">Wyślij do llm</button>
     </form>
-    {% if answer %}
-        <p>Odpowiedź: {{ answer }}</p>
-    {% endif %}
+<!--    {% if answer %}-->
+<!--        <p>Odpowiedź: {{ answer }}</p>-->
+<!--    {% endif %}-->
+
+    {% for message in history %}
+        <p>{{ message.role }}: {{ message.parts[0].text }}</p>
+    {% endfor %}
+
+
 </body>
 </html>
