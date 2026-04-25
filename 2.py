@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from google import genai
 from dotenv import load_dotenv
 
@@ -14,9 +14,17 @@ client = genai.Client()
 def chat():
     return render_template('chat.html')
 
-
-
-
+@app.route('/api/chat', methods=['POST'])
+def chat_api():
+    data = request.get_json()
+    prompt = data['prompt']
+    history = data['history']
+    history.append({"role": "user", "parts": [{"text": prompt}]})
+    response = client.models.generate_content(
+        model="gemini-3-flash-preview", contents=history
+    )
+    history.append({"role": "model", "parts": [{"text": response.text}]})
+    return jsonify(history=history)
 
 
 @app.route('/old', methods=['GET', 'POST'])
