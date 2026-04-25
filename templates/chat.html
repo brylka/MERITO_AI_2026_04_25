@@ -10,8 +10,25 @@
     <button id="send">Wyślij do llm</button>
     <div id="chat"></div>
     <script>
+        let history = []
         document.getElementById('send').addEventListener('click', async () => {
-            console.log('Działa!')
+            let prompt = document.getElementById('prompt').value
+            document.getElementById('prompt').value = ''
+
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({prompt, history})
+            })
+            const data = await response.json()
+            history = data.history
+
+            document.getElementById('chat').innerHTML = ''
+            for (let message of history) {
+                document.getElementById('chat').innerHTML +=
+                    `<p>${message.role}: ${message.parts[0].text}</p>`
+            }
+
         })
 
     </script>
