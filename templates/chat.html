@@ -14,6 +14,8 @@
         document.getElementById('send').addEventListener('click', async () => {
             let prompt = document.getElementById('prompt').value
             document.getElementById('prompt').value = ''
+            document.getElementById('chat').innerHTML +=
+                    `<p>user: ${prompt}</p>`
 
             const response = await fetch('/api/chat', {
                 method: 'POST',
@@ -28,7 +30,6 @@
                 document.getElementById('chat').innerHTML +=
                     `<p>${message.role}: ${message.parts[0].text}</p>`
             }
-
         })
 
     </script>
