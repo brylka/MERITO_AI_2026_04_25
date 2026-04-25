@@ -10,5 +10,8 @@
         <input type="text" name="prompt" required>
         <button type="submit">Wyślij do llm</button>
     </form>
+    {% if answer %}
+        <p>Odpowiedź: {{ answer }}</p>
+    {% endif %}
 </body>
 </html>
