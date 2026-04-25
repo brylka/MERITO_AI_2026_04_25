@@ -6,7 +6,15 @@
 </head>
 <body>
     <h1>Moja pierwsza aplikacja webowa</h1>
-    <input type="text" name="prompt" required>
-    <button type="submit">Wyślij do llm</button>
+    <input type="text" id="prompt" required>
+    <button id="send">Wyślij do llm</button>
+    <div id="chat"></div>
+    <script>
+        document.getElementById('send').addEventListener('click', async () => {
+            console.log('Działa!')
+        })
+
+    </script>
+
 </body>
 </html>
