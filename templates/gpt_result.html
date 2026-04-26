@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Sprawdź pytanie i odpowiedź</title>
+    <style>
+        body { background-color: {% if data.poprawna %} aquamarine; {% else %} red; {% endif %}  }
+    </style>
+</head>
+<body>
+    <h1>Sprawdź pytanie i odpowiedź</h1>
+
+    <p>Pytanie: {{ question }}</p>
+    <p>Odpowiedź: {{ answer }}</p>
+
+    {% if data.poprawna %}
+    <p>Odpowiedź poprawna</p>
+    {% else %}
+    <p>Odpowiedź błędna</p>
+    <p>Poprawna odpowiedź: {{ data.poprawna_odpowiedz }}</p>
+    {% endif %}
+    <p>Uzasadnienie: {{ data.uzasadnienie }}</p>
+
+    <p><a href="/gpt">Wróć do formularza</a></p>
+
+</body>
+</html>
