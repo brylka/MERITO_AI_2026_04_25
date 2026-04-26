@@ -17,14 +17,11 @@ def chat():
 @app.route('/api/chat', methods=['POST'])
 def chat_api():
     data = request.get_json()
-    prompt = data['prompt']
     history = data['history']
-    history.append({"role": "user", "parts": [{"text": prompt}]})
     response = client.models.generate_content(
         model="gemini-3-flash-preview", contents=history
     )
-    history.append({"role": "model", "parts": [{"text": response.text}]})
-    return jsonify(history=history)
+    return jsonify(answer=response.text)
 
 
 @app.route('/old', methods=['GET', 'POST'])
