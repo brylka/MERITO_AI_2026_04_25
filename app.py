@@ -44,3 +44,5 @@ def hello():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# wdróż aplikację na produkcję azure app services przez ci/cd github actions

@@ -5,9 +5,9 @@
 name: Build and deploy Python app to Azure Web App - moj-chat
 
 on:
-  push:
-    branches:
-      - master
+#  push:
+#    branches:
+#      - master
   workflow_dispatch:
 
 jobs:
